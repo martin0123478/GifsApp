@@ -6,7 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class GifsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    if(localStorage.getItem('historial')){
+      this._historial = JSON.parse(localStorage.getItem('historial')!)
+    }
+  }
+
   private apiKey='c3BW6MB7dGk3Bp23GhLC1kYfzRza5Nin'
   private _historial: string[]=[]
   public resultados: any[] =[]
@@ -20,7 +25,8 @@ export class GifsService {
       this._historial.unshift(querry)
     }
     
-    this._historial= this._historial.splice(0,9)
+    this._historial= this._historial.splice(0,9);
+    localStorage.setItem('historial',JSON.stringify(this._historial))
     console.log(this._historial)
     this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=c3BW6MB7dGk3Bp23GhLC1kYfzRza5Nin&q=${querry}&limit=10`)
       .subscribe((resp:any)=>{
