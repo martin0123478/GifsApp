@@ -1,1 +1,20 @@
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, dolorum, accusantium maiores eum omnis cum perferendis autem amet suscipit numquam necessitatibus repellendus libero, voluptatum architecto placeat dolores cupiditate quo incidunt?
+<!-- <ul>
+  <li *ngFor="let item of resultados">
+    {{item.title}}
+
+  </li>
+    
+</ul> -->
+
+<div class="row">
+  <div *ngFor="let item of resultados" class="col-md-4 col-sm-6">
+    <div class="card">
+      <img [src]="item.images.downsized_medium.url" alt="">
+      <div class="card-body">
+        <p class="card-text">
+       {{item.title}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
